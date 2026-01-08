@@ -1,0 +1,193 @@
+/* Industrial & Safety Theme */
+:root {
+    --color-dark: #1A1A1A; /* Workshop floor */
+    --color-primary: #CC0000; /* Tool/Safety Red */
+    --color-secondary: #FFC72C; /* Caution/Metal Sheen Yellow */
+    --color-light: #F0F0F0;
+    --parallax-sensitivity: 50px;
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: var(--color-light);
+    text-transform: uppercase;
+}
+
+.section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0D0D0D; 
+    padding: 15px 5%;
+    border-bottom: 3px solid var(--color-primary);
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--color-secondary);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar a {
+    color: var(--color-light);
+    text-decoration: none;
+    margin-left: 25px;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: var(--color-primary);
+}
+
+/* --- MOTION FEATURE 1: Parallax Hero Styling --- */
+.hero-container {
+    height: 60vh;
+    overflow: hidden; 
+    perspective: 1000px; /* 3D context for layers */
+    position: relative;
+}
+
+.parallax-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.1s linear; /* Makes motion smooth */
+}
+
+.layer-bg {
+    /* Background Image: Industrial garage scene */
+    transform: translateZ(-500px) scale(3.5); /* Pushed back in Z-space, scaled up */
+    opacity: 0.6;
+}
+
+.layer-fg {
+    z-index: 10;
+    text-shadow: 2px 2px 5px #000;
+}
+
+.layer-fg h1 {
+    font-size: 4em;
+    margin-bottom: 10px;
+    color: var(--color-secondary);
+}
+
+.cta-button {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.cta-button:hover {
+    background-color: #A00000;
+    transform: scale(1.05);
+}
+
+/* Service & Gallery Grids */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background-color: #2c2c2c;
+    padding: 25px;
+    border-left: 5px solid var(--color-secondary);
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 199, 44, 0.2);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.car-image {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
+    border: 3px solid var(--color-primary);
+}
+
+/* Contact Form */
+#contact-form input, #contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: #333;
+    color: var(--color-light);
+    border-radius: 3px;
+}
+
+/* --- MOTION FEATURE 2: Scroll Reveal Styling (Initial hidden state) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform; /* Performance hint */
+}
+
+/* Specific start positions for effect variation */
+.reveal.fade-bottom {
+    transform: translateY(20px);
+}
+.reveal.fade-left {
+    transform: translateX(-50px);
+}
+.reveal.fade-right {
+    transform: translateX(50px);
+}
+.reveal.fade-top {
+    transform: translateY(-20px);
+}
+
+/* Active state (visible) */
+.reveal.active {
+    opacity: 1;
+    transform: none;
+}
